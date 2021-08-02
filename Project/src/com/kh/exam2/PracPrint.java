@@ -1,4 +1,4 @@
-package com.kh.exam1;
+package com.kh.exam2;
 
 public class PracPrint {
 
@@ -19,6 +19,5 @@ public class PracPrint {
 		 * 내용이 없는 맨 밑에 줄은 출력이 안되기 때문에 밑에 줄은 print 써 주는게 좀 더 정확하다.
 		 */
 	}
-	
 
 }
