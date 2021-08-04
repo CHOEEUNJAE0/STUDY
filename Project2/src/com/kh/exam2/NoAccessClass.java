@@ -1,6 +1,7 @@
 package com.kh.exam2;
 
-class NoAccessClass {
-	public int attribute = 200;
-	public NoAccessClass() {};
+ public class NoAccessClass {
+   public int attribute = 000;
+   public NoAccessClass() {};
+
 }
