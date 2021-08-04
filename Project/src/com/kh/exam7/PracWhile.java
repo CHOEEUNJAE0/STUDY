@@ -294,5 +294,6 @@ public class PracWhile {
 		// ex4();
 		// ex5();
 		ex6();
+		
 	}
 } 
