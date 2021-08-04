@@ -34,6 +34,8 @@ public class Variable {
 	       System.out.println(str3);
 	       System.out.println(str4);
 	       System.out.println(str5);
+	       
+	       
 		
 
 		

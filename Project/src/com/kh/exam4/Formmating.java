@@ -13,6 +13,8 @@ public class Formmating {
 	      double temp = 37.8;
 	      System.out.printf("현재의 온도는 %f 도 입니다.\n", temp);
 	      System.out.printf("현재의 온도는 %.2f 도 입니다.\n", temp);
+	      
+	      
 	   
 	}
 

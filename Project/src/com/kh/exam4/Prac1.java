@@ -30,6 +30,7 @@ public class Prac1 {
 		System.out.printf("ЦђБе : %%.2\f", avg);
 		
 		
+		
 
 	}
 

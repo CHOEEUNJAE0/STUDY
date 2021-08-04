@@ -19,6 +19,8 @@ public class Casting {
 	      
 	      //이런 변환들은 기본데이터 타입일때 가능
 
+	      
+	      
 	}
 
 }
