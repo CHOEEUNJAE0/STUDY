@@ -14,6 +14,7 @@ public class HelloJava {
 		System.out.println("Hello Java Programming!");// 출력함수(메서드라고도한다.)
 		//println은 여러줄 줄력이 되고 출력 후 개행(엔터)의 기능으로 동작
 		//System.out.print도 출력함수인데 이건 딱 한 줄만 출력해줌.
+		
 	}
 
 }
