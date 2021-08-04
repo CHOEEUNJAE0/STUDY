@@ -23,6 +23,7 @@ public class IFStatement1 {
 			System.out.println("b의 저장된 값은 5의 배수입니다.");
 		}else {
 			System.out.println("b에 저장된 값은 5의 배수가 아닙니다.");
+			
 		}
 
 	}

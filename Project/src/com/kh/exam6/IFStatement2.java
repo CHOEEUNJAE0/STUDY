@@ -34,6 +34,7 @@ public class IFStatement2 {
 			System.out.printf("%d 분기입니다.\n" ,(a / 3) +1);
 		}else {
 			System.out.println("1~12 사이의 숫자를 입력하세요.");
+			
 		}
 }
 }
