@@ -106,6 +106,8 @@ public class Operator {
 				res = (x5 % 2 == 0) ? true : false;
 
 				System.out.println("x5´Â Â¦¼ö? -> " + res);
+				
+				
 	}
 
 }
