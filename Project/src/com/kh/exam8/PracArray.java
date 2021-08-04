@@ -404,6 +404,8 @@ public class PracArray {
 		// ex3();
 		// ex2();
 		// ex1();
+		
+		
 	}
 
 }

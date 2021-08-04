@@ -72,36 +72,6 @@ public class PracArray1 {
     	System.out.println(Arrays.toString(minMax));	
     	}
     	
-    	
-    	
-    	
-    	
-    
-   public static void ex3() {
-	   int[] arr = new int[] {37,92,58,46,94,29,25,58};
-	   int[] noDuplicate = new int[0];
-	   boolean isDuplicate = false;
-	   
-	   for(int i = 0; i < arr.length; i++) {
-		   for(int j =0; j <noDuplicate.length; j++) {
-			   if(arr[i] == noDuplicate[j]) {
-				   isDuplicate = true;
-				   break;
-			   }
-		   }
-		   if(!isDuplicate) {
-			   int[] noDuplicateCopy = new int[noDuplicateCopy.length + 1];
-			   System.arraycopy(noDuplicate, 0, noDuplicateCopy, 0, noDuplicate)
-		   }
-	   }
-	   
-	   
-	   
-	   
-	   
-		
-	}
-   
            public static void ex4() {
         	   /*
        		 * 다음의 정수 배열이 있다.
