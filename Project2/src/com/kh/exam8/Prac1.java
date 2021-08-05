@@ -63,3 +63,6 @@ public class Prac1 {
 		data.name = "ȫ�浿";
 		data.num = 30;
 		data.arr = new int[] {10, 20, 30};
+	}
+}
+}
