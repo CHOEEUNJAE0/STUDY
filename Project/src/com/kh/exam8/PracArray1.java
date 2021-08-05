@@ -179,6 +179,24 @@ public class PracArray1 {
            }
         	   System.out.println(Arrays.deepToString(arr)); //무조건 한줄로 출력이 된다.[[0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0]]
            }
+           
+           public static void ex7() {
+        	   
+        	   String ClassGroup [] = new String[4];
+        	   ClassGroup[0] = "최은재" ;
+        	   System.out.println(ClassGroup[0]);
+        	   ClassGroup[0] = "서지우" ;
+        	   System.out.println(ClassGroup.length);//길이만 출력
+        	   ClassGroup[0] = "서온달" ;
+        	   System.out.println(ClassGroup.length);
+        	   ClassGroup[0] = "최반달" ;
+        	   System.out.println(ClassGroup.length);
+        	   
+        	   
+        	   
+        	   
+           }
+           
 	public static void main(String[] args) {
 		
 		
@@ -187,8 +205,8 @@ public class PracArray1 {
 		//ex3();
 		//ex4();
 		//ex5();
-		ex6();
-		
+		//ex6();
+		ex7();		
 	}
 }
 

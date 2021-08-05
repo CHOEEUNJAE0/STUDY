@@ -14,30 +14,52 @@ package com.kh.exam6;
  *  
  */
 
-class Member {
-	String name = "Women IT" ;
-	String gender = "Female";
-	
-	
-	
-}
 
-class Product { 
-}
+	//생성자
+	//public Member() {} //별 다른 구현 내용(매개변수) 없으면 괄호만 치고 완성
+
 
 class Circle {
-}
+	
+	private double PI = 3.14;
+	private int radius = 1;
+	
 
+
+  public Circle() {}
+
+  public void incrementRadius() {
+	  
+  }
+  public void getAreaOfCircle() {
+	  
+  }
+  
+  public void getSizeOfCircle() {
+	  
+  }
+  
 
 public class SampleClass {
 
 	public static void main(String[] args) {
-		  Member m = new Member();
-		  Product p = new Product();
-		  Circle c = new Circle();
+//		//인스턴스 화 ,를 통해서 클래서와 메서드에 접근 
+//		  Member m = new Member();
+//		  m.changeName("홍길동");
+//		  m.printName();
+		
+//	  Product p = new Product();
+//	  p.information();
+		
+      Circle c = new Circle();
+      c.incrementRadius();
+      c.getAreaOfCircle();
+      c.getSizeOfCircle();
+      
+     
 	
 		 
 
 	}
-
+}
 }
