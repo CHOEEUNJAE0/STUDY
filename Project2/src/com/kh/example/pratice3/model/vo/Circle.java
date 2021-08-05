@@ -4,9 +4,6 @@ public class Circle {
 
 		private double PI = 3.14;
 		private int radius = 1;
-		
-
-
 	  public Circle() {}
 
 	  public void incrementRadius() {
@@ -18,8 +15,6 @@ public class Circle {
 		  //¿øÀÇ ³ÐÀÌ
 		  //radius * radius * PI
 		  System.out.println(this.radius * this.radius * this.PI);
-		  
-		  
 	  }
 	  
 	  public void getSizeOfCircle() {
