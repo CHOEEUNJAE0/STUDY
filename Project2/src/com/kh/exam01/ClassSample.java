@@ -1,4 +1,4 @@
-package com.kh.exam1;
+package com.kh.exam01;
 
 class Kukmin {//클래스를 하나 만들어 줌 
 	//클래스를 추상화 한 내용 

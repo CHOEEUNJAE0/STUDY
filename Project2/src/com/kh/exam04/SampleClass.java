@@ -1,4 +1,4 @@
-package com.kh.exam4;
+package com.kh.exam04;
 
 
 //STATIC : 멤버 변수/필드에 이 예약어를 사용하면 동일 클래스로 만들어진 모든 인스턴스들 간에 

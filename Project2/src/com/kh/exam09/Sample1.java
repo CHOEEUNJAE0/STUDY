@@ -1,15 +1,16 @@
-package com.kh.exam9;
+package com.kh.exam09;
 
 public class Sample1 {
 	
 	public static void ex1() {
-		Prac1 p = new Prac1();
+		//Prac1 p = new Prac1();
+		Prac2 p = new Prac2();
 		
-		p.isEven(10);
-		p.isOdd(10);
-		p.isMulti1(15);
-		p.isMulti2(27);
-		p.isMulti3(10);
+//		p.isEven(10);
+//		p.isOdd(10);
+//		p.isMulti1(15);
+//		p.isMulti2(27);
+//		p.isMulti3(10);
 		
 		
 //		
