@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang= "ko">
+    <head>
+        <meta charset="utf-8">
+        <!-- 3초마다 새로고침이라는 뜻-->
+        <!--<meta http-equiv="refresh" content="3">-->
+        <!-- 3초 뒤에 네이버로 이동한다는 뜻. 다시 원래 페이지로 돌아가진 않는다.-->
+        <!--<meta http-equiv="refresh" content="3; url=http://naver.com">-->
+        <title>문서 제목</title>
+        <!--        MIME Type-->
+        <link type="image/png" rel="icon" href="/project4/static/icon/flower.png" >
+        <!--rel=stylesheet에 연결 href=연결 경로 지정하는것-->
+        <!--다른서버에 존재하는 외부파일이면 앞에 http://도메인주소 까지 입력 해줘야함-->
+        <link type="text/css" rel="stylesheet" href="/project4/static/css/basic.css">
+        <base href="/project4/other/" target="_blank">
+        <script type="text/javascript" src="/project4/static/js/basic.js"></script>
+        <style>
+            body {background-color :rgb(194, 245, 189)}
+        </style>
+    </head>
+    <body onload="test()">
+        <!--URL    SERVER IP|PORT|PATH|FILENAME
+            http://127.0.0.1:5500/project4/chap01/sample.html-->
+        문서 작성하기 
+        <a href="test1.html">페이지 링크</a>        
+    </body>
+</html>

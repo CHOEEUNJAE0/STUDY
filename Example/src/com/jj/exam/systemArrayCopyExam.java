@@ -14,7 +14,6 @@ public class systemArrayCopyExam {
 		for(int i = 0; i < newIntArray.length; i++) {
 			System.out.println(newIntArray[i] + ",");
 		}
-		
 		System.out.println("newIntArray [0]  = " + newIntArray[0]);
 		System.out.println("newIntArray [1]  = " + newIntArray[1]);
 		System.out.println("newIntArray [2]  = " + newIntArray[2]);

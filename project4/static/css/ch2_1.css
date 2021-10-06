@@ -1,0 +1,91 @@
+*{ /*모든 요소가 공통된 스타일 속성이 필요한 경우 사용*/
+    /*모든 요소들에게 공통된 스타일을 적용하여 초기화 시킴*/
+   /* margin : 0;*/ /*외부여백*/
+   /* padding : 0;*/ /*내부여백*/   
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin : 10px;
+}
+
+h2 {
+    text-decoration : underline;
+}
+#first {
+    background-color : lightsteelblue;
+}
+#second {
+    background-color : lightcyan;
+}
+
+.cls-1{
+    color : lavenderblush;
+}
+
+.cls-2{
+    color : rosybrown;
+}
+.cls-3 {
+    background-color : wheat
+}
+
+input[type=number] {
+    background-color : cornsilk; 
+}
+
+input[placeholder]{
+    background-color : lavenderblush;
+}
+
+[subject] {
+    margin : 16px;
+}
+[subject~=title] {
+    font-size : 18px;
+}
+[subject^=text]{
+    color:antiquewhite;
+}
+
+[subject$=text]{
+    text-decoration : underline;
+}
+
+[subject*=body]{
+    background-color : lightseagreen;
+}
+
+[subject|=bold] {
+    font-weight : bold;
+}
+
+[subject|=italic] {
+    font-style : italic;
+}
+
+ul {
+    margin-left : 36px;
+}
+
+/*ul의 자손 li까지 여백*/
+ul>li{
+    padding : 4px 8px;
+}
+
+ul>li>ol {
+    margin-left : 36px;
+}
+/*후손 선택자*/
+ul li {
+    color : yellowgreen;
+}
+
+/*+ : h2뒤에 바로 존재하는 p 태그만 변경*/
+h2+p {
+    background-color : peachpuff;
+}
+
+/*~ : h2요소 뒤에 존재하는 모든 p태그 변경*/
+h2~p {
+    color : gray;
+}

@@ -15,6 +15,8 @@ public class advaceFor {
 		System.out.println("점수 총합 : " +sum);
 		//평균을 구해보자              // 요소 수
 		double avg= (double) sum / scores.length;
+		//double 타입으로 sum을 변환한 이유는 자바에서는 정수/정수= 정수 이므로
+		//평균을 실수값으로 출력하기 위해서 double로 갑 준 것.
 		System.out.println("점수 평균 = " + avg);
 		
 		

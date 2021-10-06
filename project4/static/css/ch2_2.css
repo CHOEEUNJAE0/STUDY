@@ -1,0 +1,91 @@
+[class*=input]:active {
+    background-color : cornsilk;
+}
+
+[class*=input]:hover {
+    background-color : cornsilk;
+}
+
+[type=checkbox]:checked {
+    box-shadow : 0 0 0 2px red;
+}
+/*remember에 checked 되어 있으면서 동일한 위치에 label이 있을때 pink*/
+#remeber:checked+label {
+    color: pink;
+}
+
+input:focus{
+    background-color : cyan;
+    border-width : 4px;
+}
+input:enabled {
+    background-color : cadetblue; 
+}
+
+input:disabled {
+    background-color : violet; 
+}
+/*link와 visited는 해당 url에 대한 방문 기록이 있냐없냐로 나뉨*/
+/*한번도 방문하지 않은 것*/
+:link {
+    color : lightgoldenrodyellow;
+}
+/*한번이라도 방문하면 색상이 바뀌는 것*/
+:visited {
+    color : lightcoral;
+}
+/*tr태그에서 첫번째 자식인 것.*/
+tr:first-child {
+    font-weight : bold;
+}
+/*괄호 안에 숫자를 넣어주면 된다.*/
+/*첫번째 td(세로줄)*/
+/*숫자+n 하면 숫자의 배수*/
+td:nth-child(2n) {
+    background-color:aquamarine;
+}
+/*숫자n의 배수에서 1만큼 뺀 위치에 색상 적용*/
+td:nth-child(2n-1) {
+    background-color: mediumorchid;
+}
+/*tr태그에서 마지막 자식인 것.*/
+tr:last-child{
+    background-color : lightpink;
+}
+/*섹션을 굳이 나누지 않고 첫번째랑 마지막만 지정 해 주고 싶으면 */
+/*앞에 h2를 빼주고 :부터 적어주면 된다*/
+h2:first-of-type {
+    background-color : lightblue;
+}
+h2:nth-of-type(2n-1){
+    color:chocolate;
+}
+h2:last-of-type {
+    background-color : lightcoral;
+}
+.f-latter::first-letter {
+    color : red;
+    font-size:2em;
+}
+.f-line::first-line{
+    color : lightblue;
+}
+::selection{
+    background-color : hotpink;
+}
+h2::after {
+    content:" 👻"
+}
+h2::before {
+    content : "👻"
+}
+#id-color {
+    color:aqua;
+}
+.cls-color {
+    color : lightgreen;
+}
+span{
+    color : lightseagreen !important; 
+}
+

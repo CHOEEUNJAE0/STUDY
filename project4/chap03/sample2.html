@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .z-idx-style {
+            position : relative;
+        }
+        .z-idx-style > div {
+            position : absolute;
+            display : inline-block;
+            width : 100px; height : 100px;
+        
+        }
+        .z-idx-style > .lvl-1 {
+            left : 0px; top : 50px;
+            z-index : 1;
+        }
+        .z-idx-style > .lvl-2 {
+            left : 25px; top : 75px;
+            z-index : 2;
+        }
+        .z-idx-style > .lvl-3 {
+            left : 50px; top : 100px;
+            z-index : 3;
+            
+        }
+        .float-style {
+            position : absolute;
+            top : 220;
+        }
+        .float-style >div {
+            display : inline-block;
+            width : 100px; height : 100px;
+        }
+        .float-style .left{
+            float:left;
+        }
+        .float-style .right{
+            float:right;
+        }
+        .float-style .clear {
+            clear : both;
+        }
+        .bg-1{
+            background-color: lightcyan;
+        }
+        .bg-2{
+            background-color: lightpink;
+        }
+        .bg-3{
+            background-color: lightsteelblue;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <article class="z-idx-style">
+            <h2>z-index</h2>
+            <div class = "lvl-1" style="background-color : lavender"></div>
+            <div class = "lvl-2" style="background-color:lavenderblush"></div>
+            <div class = "lvl-3" style="background-color:bisque"></div>
+        </article>
+
+        <article class="float-style">
+            <h2>float</h2>
+            <div class="bg-1 right"></div>
+            <div class="bg-2 left"></div>
+            <div class="bg-3 clear"></div>
+            <!-- clear 위에 내용 따라 가지 않게 설정 해주는 것 -->
+        </article>
+    </section>
+</body>
+</html>

@@ -4,7 +4,7 @@ public class Sample3 {
 
 	public static void main(String[] args) {
 		int score = 75;
-		
+		// ture 블록만을 찾아서 실행 하게 만든다.
 		if(score >= 90) {
 			System.out.println("점수가 90~100입니다.");
 			System.out.println("A 등급입니다.");

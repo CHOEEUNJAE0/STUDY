@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>영역 관련 태그</title>
+    <!-- 영역 나뉜 걸 보기 위해서 컬러 지정 해 줌.-->
+    <style>
+        header {
+            height : 100px;
+            background-color : lightsteelblue;
+        }
+  
+        section {
+            float : left;
+            width : 70%;
+            box-sizing : border-box;
+            padding : 10px; 
+            background-color : lightgoldenrodyellow;
+        }
+        article {
+            height : 50px;
+            background-color : lightpink;
+        }
+        aside {
+            float : left;
+            width : 30%;
+            box-sizing : border-box;
+            height : 120px;
+            background-color : lightgreen;
+        }
+        footer {
+            /*clear를 써 주면 위에 float의 영향을 안 받는다.*/
+            /*영향을 받게 되면 위에꺼에 붙어버림*/
+            clear : both;
+            height : 100px;
+            background-color : lightcoral;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>메뉴가 만들어질 영역</nav>
+    </header>
+    <section>
+        <article> 본문 콘텐츠가 생성 될 영역 1 </article>
+        <article> 본문 콘텐츠가 생성 될 영역 2 </article>
+    </section>
+    <aside> 광고 및 외부 링크 목록 </aside>
+    <footer> 회사 소개 및 사이트 맵, 저작권 정보 </footer>
+</body>
+</html>

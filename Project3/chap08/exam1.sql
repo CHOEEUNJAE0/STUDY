@@ -1,0 +1,291 @@
+SET SERVEROUTPUT ON;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Hello PL/SQL');
+END;
+/
+DECLARE
+    ID NUMBER;
+    NAME VARCHAR2(10);
+BEGIN
+    ID := 5;
+    NAME := '홍길동';
+    DBMS_OUTPUT.PUT_LINE('번호 : ' || ID);
+    DBMS_OUTPUT.PUT_LINE('이름 : ' || NAME);
+END;
+/
+DECLARE
+    ID NUMBER := 5;
+    NAME VARCHAR2(10) := '홍길동';
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('번호 : ' || ID);
+    DBMS_OUTPUT.PUT_LINE('이름 : ' || NAME);
+END;
+/
+DECLARE
+    ID NUMBER := 5;
+    NAME VARCHAR2(10) := '홍길동';
+BEGIN
+    ID := ID + 1;
+    DBMS_OUTPUT.PUT_LINE('번호 : ' || ID);
+    DBMS_OUTPUT.PUT_LINE('이름 : ' || NAME);
+END;
+/
+DECLARE
+    INPUT_NUM NUMBER;
+    VAL NUMBER;
+BEGIN
+    VAL := &INPUT_NUM;
+    DBMS_OUTPUT.PUT_LINE('입력한 정수값 : ' || VAL);
+END;
+/
+DECLARE
+    INPUT_NUM NUMBER;
+    VAL NUMBER;
+BEGIN
+    VAL := &INPUT_NUM;
+    IF(MOD(VAL, 2) = 0) THEN
+        DBMS_OUTPUT.PUT_LINE('짝수를 입력했습니다.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('홀수를 입력했습니다.');
+    END IF;
+END;
+/
+DECLARE
+    INPUT_NUM NUMBER;
+    VAL NUMBER;
+BEGIN
+    VAL := &INPUT_NUM;
+    IF (MOD(VAL, 2) = 0) THEN
+        DBMS_OUTPUT.PUT_LINE('짝수를 입력했습니다.');
+    ELSIF (MOD(VAL, 2) = 1) THEN
+        DBMS_OUTPUT.PUT_LINE('홀수를 입력했습니다.');
+    END IF;
+END;
+/
+DECLARE
+    INPUT_NUM NUMBER;
+    VAL NUMBER;
+BEGIN
+    VAL := &INPUT_NUM;
+    LOOP    -- 무한 반복 가능
+        DBMS_OUTPUT.PUT_LINE('반복문 입니다. : ' || VAL);
+        VAL := VAL - 1;
+        IF VAL = 0 THEN EXIT;
+        END IF;
+    END LOOP;
+END;
+/
+BEGIN
+    FOR I IN 0..3 LOOP
+        DBMS_OUTPUT.PUT_LINE('반복문 입니다. : ' || I);
+    END LOOP;
+END;
+/
+BEGIN
+    FOR I IN REVERSE 0..3 LOOP
+        DBMS_OUTPUT.PUT_LINE('반복문 입니다. : ' || I);
+    END LOOP;
+END;
+/
+DECLARE
+    VAL NUMBER;
+BEGIN
+    VAL := 0;
+    WHILE VAL < 3 LOOP
+        DBMS_OUTPUT.PUT_LINE('WHILE 반복문 입니다. : ' || VAL);
+        VAL := VAL + 1;
+    END LOOP;
+END;
+/
+DECLARE
+    FNAME VARCHAR2(20);
+    LNAME VARCHAR2(25);
+    SALARY NUMBER(8, 2);
+BEGIN
+    SELECT FIRST_NAME
+         , LAST_NAME
+         , SALARY
+      INTO FNAME, LNAME, SALARY
+      FROM EMPLOYEES
+     WHERE EMPLOYEE_ID = 100;
+    
+    DBMS_OUTPUT.PUT_LINE('성 : ' || LNAME);
+    DBMS_OUTPUT.PUT_LINE('이름 : ' || FNAME);
+    DBMS_OUTPUT.PUT_LINE('급여액 : ' || SALARY);
+END;
+/
+DECLARE
+    FNAME EMPLOYEES.FIRST_NAME%TYPE;
+    LNAME EMPLOYEES.LAST_NAME%TYPE;
+    SALARY EMPLOYEES.SALARY%TYPE;
+BEGIN
+    SELECT FIRST_NAME
+         , LAST_NAME
+         , SALARY
+      INTO FNAME, LNAME, SALARY
+      FROM EMPLOYEES
+     WHERE EMPLOYEE_ID = 100;
+    
+    DBMS_OUTPUT.PUT_LINE('성 : ' || LNAME);
+    DBMS_OUTPUT.PUT_LINE('이름 : ' || FNAME);
+    DBMS_OUTPUT.PUT_LINE('급여액 : ' || SALARY);
+END;
+/
+DECLARE
+    EMP EMPLOYEES%ROWTYPE;
+BEGIN
+    SELECT *
+      INTO EMP
+      FROM EMPLOYEES
+     WHERE EMPLOYEE_ID = 100;
+    
+    DBMS_OUTPUT.PUT_LINE('성 : ' || EMP.LAST_NAME);
+    DBMS_OUTPUT.PUT_LINE('이름 : ' || EMP.FIRST_NAME);
+    DBMS_OUTPUT.PUT_LINE('급여액 : ' || EMP.SALARY);
+END;
+/
+CREATE VIEW V_DEPT_INFO AS
+    SELECT A.DEPARTMENT_NO AS 학과코드
+         , A.DEPARTMENT_NAME AS 학과명
+         , A.CATEGORY AS 분류
+         , A.OPEN_YN AS 개설여부
+         , A.CAPACITY AS 정원
+         , COUNT(*) AS 현재인원
+      FROM TB_DEPARTMENT A JOIN TB_STUDENT B
+        ON A.DEPARTMENT_NO = B.DEPARTMENT_NO
+     GROUP BY A.DEPARTMENT_NO, A.DEPARTMENT_NAME
+            , A.CATEGORY, A.OPEN_YN, A.CAPACITY;
+DECLARE
+    R V_DEPT_INFO%ROWTYPE;
+    DEPT_CODE NUMBER;
+BEGIN
+    SELECT *
+      INTO R
+      FROM V_DEPT_INFO
+     WHERE 학과코드 = TRIM(TO_CHAR(&DEPT_CODE, '000'));
+    DBMS_OUTPUT.PUT_LINE(R.학과명 || ' | ' || R.분류 || ' | ' || R.개설여부 || ' | ' || R.정원  || ' | ' || R.현재인원);
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('해당 데이터가 존재하지 않습니다.');
+    WHEN TOO_MANY_ROWS THEN
+        DBMS_OUTPUT.PUT_LINE('너무 많은 행 데이터가 있습니다.');
+END;
+/
+BEGIN
+    FOR R IN (SELECT * FROM V_DEPT_INFO) LOOP
+        DBMS_OUTPUT.PUT_LINE(R.학과명 || ' | ' || R.분류 || ' | ' || R.개설여부 || ' | ' || R.정원  || ' | ' || R.현재인원);
+    END LOOP;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('해당 데이터가 존재하지 않습니다.');
+END;
+/
+DECLARE
+    TYPE NAME_ARRAY IS TABLE OF V_DEPT_INFO.학과명%TYPE INDEX BY BINARY_INTEGER;
+    ARR_NAME NAME_ARRAY;
+    IDX BINARY_INTEGER := 1;
+BEGIN
+    FOR R IN (SELECT * FROM V_DEPT_INFO) LOOP
+        ARR_NAME(IDX) := R.학과명;
+        IDX := IDX + 1;
+    END LOOP;
+    FOR I IN 1..IDX-1 LOOP
+        DBMS_OUTPUT.PUT_LINE(ARR_NAME(I));
+    END LOOP;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('해당 데이터가 존재하지 않습니다.');
+END;
+/
+-- 구구단을 출력하는 PL/SQL 작성
+BEGIN
+    FOR X IN 1..9 LOOP
+        FOR Y IN 1..9 LOOP
+            DBMS_OUTPUT.PUT(X || 'x' || Y || '=' || X * Y || '    ');
+        END LOOP;
+        DBMS_OUTPUT.PUT_LINE('');
+    END LOOP;
+END;
+/
+DECLARE
+    X   NUMBER := 1;
+    Y   NUMBER := 1;
+BEGIN
+    WHILE X <= 9 LOOP
+        WHILE Y <= 9 LOOP
+            DBMS_OUTPUT.PUT(X || 'x' || Y || '=' || X * Y || '    ');
+            Y := Y + 1;
+        END LOOP;
+        DBMS_OUTPUT.PUT_LINE('');
+        X := X + 1;
+        Y := 1;
+    END LOOP;
+END;
+/
+DECLARE
+    TYPE NUM_ARRY IS TABLE OF NUMBER INDEX BY BINARY_INTEGER;
+    RESULTS NUM_ARRY;
+    IDX BINARY_INTEGER := 1;
+BEGIN
+    FOR X IN 1..9 LOOP
+        FOR Y IN 1..9 LOOP
+            RESULTS(IDX) := X * Y;
+            IDX := IDX + 1;
+        END LOOP;
+    END LOOP;
+    FOR I IN 1..IDX-1 LOOP
+        DBMS_OUTPUT.PUT_LINE(RESULTS(I) || ' ');
+    END LOOP;
+END;
+/
+-- TB_PROFESSOR, TB_STUDENT 의 이름, 주민번호, 주소 를 출력하는 PL/SQL 작성
+-- 주민번호의 경우 마지막 7자리에 대해 ******* 로 처리될 수 있도록 한다.
+-- 사용자 입력으로 숨김 이라는 입력을 받으면 ******* 로 처리되게 한다.
+CREATE VIEW V_STD_PROF_INFO AS
+    SELECT STUDENT_NAME AS NAME
+        , STUDENT_SSN AS SSN
+        , STUDENT_ADDRESS AS ADDR
+    FROM TB_STUDENT
+    UNION ALL
+    SELECT PROFESSOR_NAME AS NAME
+        , PROFESSOR_SSN AS SSN
+        , PROFESSOR_ADDRESS AS ADDR
+    FROM TB_PROFESSOR;
+SELECT * FROM V_STD_PROF_INFO;
+
+DECLARE
+    HIDDEN_YN   CHAR(1);
+    HIDDEN_YN   BOOLEAN;
+    INPUT       VARCHAR2(10);
+    INPUT_VAL   VARCHAR2(10);
+BEGIN
+    INPUT := '&INPUT';
+    INPUT_VAL := '&INPUT';
+    IF INPUT_VAL = '숨김' THEN
+        HIDDEN_YN := 'Y';
+        HIDDEN_YN := TRUE;
+    ELSE
+        HIDDEN_YN := 'N';
+        HIDDEN_YN := FALSE;
+    END IF;
+
+    FOR R IN (SELECT * FROM V_STD_PROF_INFO WHERE ROWNUM <= 10) LOOP
+        DBMS_OUTPUT.PUT(R.NAME || ' | ');
+
+        IF HIDDEN_YN = 'Y' THEN
+        IF HIDDEN_YN THEN
+            DBMS_OUTPUT.PUT(SUBSTR(R.SSN, 1, 8) || '******' || ' | ');
+        ELSE
+            DBMS_OUTPUT.PUT(R.SSN);
+        END IF;
+        DBMS_OUTPUT.PUT(R.ADDR);
+        DBMS_OUTPUT.PUT_LINE('');
+    END LOOP;
+END;
+/
+
+
+
+-- EMPLOYEES 테이블에서 직원들의 급여와 직원이름을 출력할 때 커미션이 있는 지원은
+-- 커미션을 포함하여 계산하여 출력 할 때 "(커미션 포함)" 이라는 내용과 같이
+-- 출력되도록 PL/SQL 작성

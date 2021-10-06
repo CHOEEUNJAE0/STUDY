@@ -1,7 +1,5 @@
 package com.jj.exam;
 
-import sun.nio.fs.DefaultFileSystemProvider;
-
 public class ForExam2 {
 
 	public static void main(String[] args) {

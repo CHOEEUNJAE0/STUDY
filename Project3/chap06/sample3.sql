@@ -1,0 +1,168 @@
+SELECT * FROM DUAL;
+
+/*
+1. 학생별, 2009년도 평균 학점을 저장한 테이블 생성하기.
+   (년도, 학번, 이름, 평균학점 컬럼 필요)
+   -두가지 방법이 있다.
+   1. 미리 테이블을 생성 후 생성 된 테이블에 조회 될 데이터를 저장 할 수 있도록 할 수 있다.
+   2. 테이블 생성 시 데이터 저장 할 수 있다 
+*/
+-- 테이블 생성과 동시에 데이터 추가
+-- 1.우선 이미 생성 되어 있는 테이블에서 데이터 조회 해보기
+                --년도별로 필요한거기때문에 년도까지만 잘라서 추출
+CREATE TABLE STD_AVG_POINT AS
+SELECT SUBSTR(B.TERM_NO, 1, 4) AS 년도
+     , A.STUDENT_NO AS 학번
+     , A.STUDENT_NAME AS 이름
+     , AVG(B.POINT) AS 평균
+  FROM TB_STUDENT A JOIN TB_GRADE B
+    ON A.STUDENT_NO = B.STUDENT_NO
+ WHERE B.TERM_NO LIKE '2009%'
+ GROUP BY  SUBSTR(B.TERM_NO,1,4), A.STUDENT_NO, A.STUDENT_NAME;
+
+DROP TABLE STD_AVG_POINT;
+
+SELECT * FROM STD_AVG_POINT;
+
+--8.제대로 생성 되었는지 SELECT*FROM으로 확인하기
+--7.상단에 CREATE TABLE + 원하는 테이블명으로 작성
+--6.필요컬럼 추가하기 
+--5-1. TERM_NO 같은 경우엔 SUBSTR까지 붙여줘야한다. 안 붙여주면 중복되어서 나오거나 한다.
+--5.'학생별' 이라고 들어갔으니깐 STUDENT_NO로 GROUP BY 해 줌. 그리고 집계함수 이외에 컬럼들 전부 GROUP BY
+--4.다 묶어 줄 필요없이 2009년도꺼만 추출해서 묶어줌 .WHERE절 추가해서 2009년도 묶기
+--3.TB_STUDENT+TB_GRADE끼리 JOIN 해줌. 같은 STUDENT_NO 로 연결
+--2.학점의 경우 2009년도 학점만 필요하기 때문에 WHERE절로 2009년도 학점만 조회
+SELECT * 
+      FROM TB_GRADE
+WHERE TERM_NO LIKE '2009%';       
+
+SELECT * FROM TB_STUDENT;
+
+-- 테이블을 미리 생성 후 추가 할 경우에는 어떤 데이터 타입을 사용하는지 크기는 얼마인지 꼭 확인필요!!
+-- DESC로 테이블의 데이터타입과 데이터크기를 미리 확인
+DESC TB_STUDENT;
+DESC TB_GRADE;
+
+CREATE TABLE STD_AVG_POINT(
+      년도 VARCHAR2(4) NOT NULL
+    , 학번 VARCHAR2(10) NOT NULL
+    , 이름 VARCHAR2(50) NOT NULL
+    , 평균 NUMBER(3,2)
+); --INSERT INTO 테이블명 후 밑에 추가 할 내용들 쭉 적어줌.
+INSERT INTO STD_AVG_POINT (
+    SELECT SUBSTR(B.TERM_NO, 1, 4) AS 년도
+     , A.STUDENT_NO AS 학번
+     , A.STUDENT_NAME AS 이름
+     , AVG(B.POINT) AS 평균
+  FROM TB_STUDENT A JOIN TB_GRADE B
+    ON A.STUDENT_NO = B.STUDENT_NO
+ WHERE B.TERM_NO LIKE '2009%'
+ GROUP BY SUBSTR(B.TERM_NO, 1, 4), A.STUDENT_NO, A.STUDENT_NAME
+);
+
+
+/*
+2. 학과별 학생 인원수와 교수 인원수를 저장한 테이블 생성하기.
+   (학과코드, 학과명, 학생 인원수, 교수 인원수 컬럼 필요)
+*/
+CREATE TABLE DEPT_STD_PRO_COUNT AS
+SELECT C.DEPARTMENT_NO AS 학과코드
+     , C.DEPARTMENT_NAME AS 학과명
+     , C.학생수
+     , COUNT(D.PROFESSOR_NO) AS 교수인원수
+  FROM (SELECT B.DEPARTMENT_NO
+             , B.DEPARTMENT_NAME
+             , COUNT(A.STUDENT_NO) AS 학생수
+          FROM TB_STUDENT A JOIN TB_DEPARTMENT B
+            ON A.DEPARTMENT_NO = B.DEPARTMENT_NO
+         GROUP BY B.DEPARTMENT_NO, B.DEPARTMENT_NAME) C JOIN TB_PROFESSOR D
+    ON C.DEPARTMENT_NO = D.DEPARTMENT_NO
+ GROUP BY C.DEPARTMENT_NO, C.DEPARTMENT_NAME, C.학생수
+ ORDER BY 1;
+
+SELECT B.DEPARTMENT_NO
+     , B.DEPARTMENT_NAME
+     , COUNT(DISTINCT A.STUDENT_NO) AS 학생수
+     , COUNT(DISTINCT C.PROFESSOR_NO) AS 교수인원
+  FROM TB_STUDENT A JOIN TB_DEPARTMENT B
+    ON A.DEPARTMENT_NO = B.DEPARTMENT_NO
+  JOIN TB_PROFESSOR C
+    ON B.DEPARTMENT_NO = C.DEPARTMENT_NO
+ GROUP BY B.DEPARTMENT_NO, B.DEPARTMENT_NAME
+ ORDER BY 1;
+
+-- A B JOIN 후 서브쿼리 사용
+--세개의 테이블 필요 
+SELECT * FROM TB_PROFESSOR;
+SELECT * FROM TB_STUDENT;
+SELECT * FROM TB_CLASS;
+
+
+
+
+/*
+3. 1,2 번에서 생성한 테이블을 사용하여 Java OJDBC로 조회하여 출력하는 코드를 만든다.
+    - [StudentAvg [번호="A000000", 이름="홍길동", 평균학점=3.7]], StudentAvg[ ... ], ...]
+    - [DeptInfo [ 학과 코드 ="001", 학과명 ="xxx학과", 학생수=25, 교수인원=5], DeptInfo[ ... ], ...]
+*/
+
+/*
+VIEW 로 만들기
+*/
+CREATE VIEW V_STD_AVG_POINT AS 
+SELECT SUBSTR(B.TERM_NO, 1, 4) AS 년도
+     , A.STUDENT_NO AS 학번
+     , A.STUDENT_NAME AS 이름
+     , AVG(B.POINT) AS 평균
+  FROM TB_STUDENT A JOIN TB_GRADE B
+    ON A.STUDENT_NO = B.STUDENT_NO
+ WHERE B.TERM_NO LIKE '2009%'
+ GROUP BY  SUBSTR(B.TERM_NO,1,4), A.STUDENT_NO, A.STUDENT_NAME;
+
+ SELECT * FROM V_STD_AVG_POINT;
+
+ CREATE OR REPLACE FORCE VIEW V_DEPT_STD_PRO_COUNT AS
+ SELECT B.DEPARTMENT_NO
+     , B.DEPARTMENT_NAME
+     , COUNT(DISTINCT A.STUDENT_NO) AS 학생수
+     , COUNT(DISTINCT C.PROFESSOR_NO) AS 교수인원
+  FROM TB_STUDENT A JOIN TB_DEPARTMENT B
+    ON A.DEPARTMENT_NO = B.DEPARTMENT_NO
+  JOIN TB_PROFESSOR C
+    ON B.DEPARTMENT_NO = C.DEPARTMENT_NO
+ GROUP BY B.DEPARTMENT_NO, B.DEPARTMENT_NAME
+ ORDER BY 1
+ WITH CHECK OPTION;
+ 
+
+ SELECT * FROM V_DEPT_STD_PRO_COUNT;
+ 
+ --생성 된 VIEW의 정보를 보고자 할 때 
+ --입력 된 구문을 확인 해 볼 수 있다.
+ SELECT * FROM USER_VIEWS WHERE VIEW_NAME = 'V_STD_AVG_POINT';
+ 
+
+ CREATE TABLE SAMPLE_T  (
+    id NUMBER NOT NULL
+    ,name VARCHAR(10)
+    ,age NUMBER
+ );
+
+ INSERT INTO SAMPLE_T VALUES(1,'홍길동',30);
+ INSERT INTO SAMPLE_T VALUES(2,NULL,30);
+ INSERT INTO SAMPLE_T VALUES(3,'김철수',NULL);
+
+ CREATE VIEW V_SAMPLE_T AS 
+    SELECT id,name FROM SAMPLE_T;
+
+CREATE VIEW V_SAMPLE_T2 AS
+SELECT id,age FROM SAMPLE_T WHERE age BETWEEN 0 AND 100
+WITH CHECK OPTION;
+
+SELECT * FROM V_SAMPLE_T;
+INSERT INTO V_SAMPLE_T VALUES(4, '박플립' );
+SELECT * FROM V_SAMPLE_T2;
+INSERT INTO V_SAMPLE_T2 VALUES(5,30);
+INSERT INTO V_SAMPLE_T2 VALUES(6,100);
+
+SELECT * FROM SAMPLE_T;

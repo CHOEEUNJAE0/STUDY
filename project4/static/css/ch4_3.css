@@ -1,0 +1,64 @@
+/*table 속성 추가*/
+table {
+    /*border-style : solid;
+    border-width: 1px;*/
+    border-collapse : collapse; /*이중 테두리 없애줌*/
+    width : 100%;
+    table-layout : fixed;/*fixed 내가 작성한 크기 고정. 크기 줄이거나 하면 영역을 침범하게 된다.*/
+}
+
+/*td, th 속성 추가*/
+td, th {
+    /*border-style: solid;
+    border-width: 1px;*/
+    /*표 안에 글자 답답 해 보이니깐 여백주기*/
+    /*padding : 0 1em; /*top이랑 bottom에 속한다.*/
+    padding-left : 1em;
+    padding-right: 1em;
+    word-break : break-all;
+    height : auto;
+}
+
+/*첫번째 자식에 대해서 속성 추가* tr : firsr-child/
+/*thead를 넣어줘서 자식을 안 써도 된다.*/
+thead > tr {
+    background-color: lightgray;
+    color : darkred;
+    border-bottom : 2px solid black;
+}
+
+tbody > tr:last-child {
+    border-bottom : 2px solid darkred;
+}
+
+tbody > tr:nth-child(2n-1) {
+    background-color: bisque;
+}
+
+table .left{
+    text-align : left;
+}
+
+table .right {
+    text-align : right;
+}
+
+table .center {
+    text-align : center;
+}
+/*마우스 가져다 댔을 때 색상 변경. 만약 이 속성 위치가 th,td 밑에 오면 두번째 tr만 바뀐다.*/
+tbody > tr:hover {
+    background-color: brown;
+}
+/*테이블 크기를 맞추기 위해 작성 해 주고 위에 sheet에 colgroup을 만들어서 class안에 원하는 크기를 넣어준다.*/
+table .w-80{
+    width : 80px;
+}
+
+table .w-160{
+    width : 160px;
+}
+
+table .w-180{
+    width : 240px;
+}

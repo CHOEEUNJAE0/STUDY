@@ -1,0 +1,151 @@
+--학과 TB_DEPARTMENT TABLE
+DROP TABLE TB_D;
+
+CREATE TABLE tb_d (
+    department_no VARCHAR2(10),
+    department_name VARCHAR2(20),
+    category_c VARCHAR2(20),
+    open_yn CHAR(1),
+    capacity_c NUMBER
+);
+ALTER TABLE tb_d ADD CONSTRAINT TB_D_DEPARTMENT_NO_PK PRIMARY KEY(department_no);
+ALTER TABLE tb_d MODIFY department_no CONSTRAINT TB_D_DEPARTMENT_NO_NN NOT NULL;
+ALTER TABLE tb_d MODIFY department_name CONSTRAINT TB_D_DEPARTMENT_NAME_NN NOT NULL;
+
+COMMENT ON COLUMN tb_d.department_no IS '학과 번호';
+COMMENT ON COLUMN tb_d.department_name IS '학과 이름';
+COMMENT ON COLUMN tb_d.category_c IS '계열';
+COMMENT ON COLUMN tb_d.open_yn IS '개설 여부';
+COMMENT ON COLUMN tb_d.capacity_c IS '정원'; 
+
+SELECT * FROM ALL_ALL_TABLES WHERE table_name = 'TB_D';
+SELECT * FROM ALL_TAB_COLUMNS WHERE table_name = 'TB_D';
+SELECT * FROM ALL_COL_COMMENTS WHERE table_name = 'TB_D';
+SELECT * FROM USER_CONSTRAINTS WHERE table_name ='TB_D';
+
+--학생 TB_STUDENT TABLE
+
+DROP TABLE TB_S;
+
+CREATE TABLE tb_s (
+    s_no VARCHAR2(10),
+    d_no VARCHAR2(10),
+    s_name VARCHAR2(30),
+    s_ssn VARCHAR2(14),
+    s_address VARCHAR2(100),
+    d_entrance DATE,
+    absence_yn CHAR(1),
+    coach_pno VARCHAR2(10)
+);
+
+ALTER TABLE tb_s ADD CONSTRAINT TB_S_S_NO_PK PRIMARY KEY (s_no);    
+ALTER TABLE tb_s MODIFY s_no CONSTRAINT TB_S_S_NO_NN NOT NULL;
+ALTER TABLE tb_s MODIFY d_no CONSTRAINT TB_S_D_NO_NN NOT NULL;
+ALTER TABLE tb_s MODIFY s_name CONSTRAINT TB_S_NAME_NN NOT NULL;
+
+COMMENT ON COLUMN tb_s.s_no IS '학생 번호';
+COMMENT ON COLUMN tb_s.d_no IS '학과 번호';
+COMMENT ON COLUMN tb_s.s_name IS '학생 이름';
+COMMENT ON COLUMN tb_s.s_ssn IS '학생 주민번호';
+COMMENT ON COLUMN tb_s.s_address IS '학생 주소';
+COMMENT ON COLUMN tb_s.d_entrance IS '입학 일자';
+COMMENT ON COLUMN tb_s.absence_yn IS '휴학 여부';
+COMMENT ON COLUMN tb_s.coach_pno IS '지도 교수 번호';
+
+SELECT * FROM ALL_ALL_TABLES WHERE table_name = 'TB_S';
+SELECT * FROM ALL_TAB_COLUMNS WHERE table_name = 'TB_S';
+SELECT * FROM ALL_COL_COMMENTS WHERE table_name = 'TB_S';
+SELECT * FROM USER_CONSTRAINTS WHERE table_name = 'TB_S';
+
+
+DROP TABLE TB_C;
+
+CREATE TABLE tb_c (
+    c_no VARCHAR2(10),
+    d_no VARCHAR2(10),
+    pc_n VARCHAR2(10),
+    c_name VARCHAR2(30),
+    c_type VARCHAR(10)
+);
+
+ALTER TABLE tb_c ADD CONSTRAINT TB_C_C_NO_PK PRIMARY KEY (c_no);
+ALTER TABLE tb_c MODIFY c_no CONSTRAINT TB_C_C_NO_NN NOT NULL;
+ALTER TABLE tb_c MODIFY d_no CONSTRAINT TB_C_D_NO_NN NOT NULL;
+ALTER TABLE tb_c MODIFY c_name CONSTRAINT TB_C_C_NAME_NN NOT NULL;
+
+COMMENT ON COLUMN tb_c.c_no IS ' 과목 번호';
+COMMENT ON COLUMN tb_c.d_no IS '학과 번호';
+COMMENT ON COLUMN tb_c.pc_n IS '선수 과목 번호';
+COMMENT ON COLUMN tb_c.c_name IS '과목 이름';
+COMMENT ON COLUMN tb_c.c_type IS '과목 구분';
+
+SELECT * FROM USER_CONSTRAINTS WHERE table_name = 'TB_C';
+SELECT * FROM ALL_ALL_TABLES WHERE table_name = 'TB_C';
+SELECT * FROM ALL_COL_COMMENTS WHERE table_name= 'TB_C';
+SELECT * FROM ALL_TAB_COLUMNS WHERE table_name = 'TB_C';
+
+DROP TABLE TB_CP;
+
+CREATE TABLE tb_cp (
+    c_no VARCHAR2(10),
+    p_no VARCHAR2(10)
+);
+
+ALTER TABLE tb_cp ADD CONSTRAINT TB_CP_C_NO_PK PRIMARY KEY (c_no, p_no);
+ALTER TABLE tb_cp MODIFY c_no CONSTRAINT TB_CP_C_NO_NN NOT NULL;
+ALTER TABLE tb_cp MODIFY p_no CONSTRAINT TB_CP_P_NO_NN NOT NULL;
+
+COMMENT ON COLUMN tb_cp.c_no IS '과목 번호';
+COMMENT ON COLUMN tb_cp.p_no IS '교수 번호';
+
+SELECT * FROM ALL_ALL_TABLES WHERE table_name = 'TB_CP';
+SELECT * FROM ALL_COL_COMMENTS WHERE table_name = 'TB_CP';
+SELECT * FROM ALL_TAB_COLUMNS WHERE table_name = 'TB_CP';
+SELECT * FROM USER_CONSTRAINTS WHERE table_name = 'TB_CP';
+
+DROP TABLE TB_P;
+
+CREATE TABLE tb_p (
+    p_no VARCHAR2(10),
+    p_name VARCHAR2(30),
+    p_ssn VARCHAR2(14),
+    p_address VARCHAR2(100),
+    d_no VARCHAR2(10)
+);
+
+ALTER TABLE tb_p ADD CONSTRAINT TB_P_P_NO_PK PRIMARY KEY(p_no);
+ALTER TABLE tb_p MODIFY p_no CONSTRAINT TB_P_P_NO_NN NOT NULL;
+ALTER TABLE tb_p MODIFY p_name CONSTRAINT TB_P_P_NAME_NN NOT NULL;
+
+COMMENT ON COLUMN tb_p.p_no IS '교수 번호';
+COMMENT ON COLUMN tb_p.p_name IS '교수 이름';
+COMMENT ON COLUMN tb_p.p_ssn IS '교수 주민번호';
+COMMENT ON COLUMN tb_p.p_address IS '교수 주소';
+COMMENT ON COLUMN tb_p.d_no IS '학과 번호';
+
+SELECT * FROM USER_CONSTRAINTS WHERE table_name = 'TB_P';
+SELECT * FROM ALL_ALL_TABLES WHERE table_name = 'TB_P';
+SELECT * FROM ALL_COL_COMMENTS WHERE table_name = 'TB_P';
+SELECT * FROM ALL_TAB_COLUMNS WHERE table_name = ' TB_P';
+
+DROP TABLE TB_G;
+
+CREATE TABLE tb_g (
+    t_no VARCHAR2(10),
+    c_no VARCHAR2(10),
+    s_no VARCHAR2(10),
+    point NUMBER(3,2)
+);
+
+ALTER TABLE tb_g MODIFY t_no CONSTRAINT TB_G_T_NO_NN NOT NULL;
+ALTER TABLE tb_g ADD CONSTRAINT TB_G_T_NO_PK PRIMARY KEY(t_no, c_no, s_no);
+ALTER TABLE tb_g MODIFY c_no CONSTRAINT TB_G_C_NO_NN NOT NULL;
+ALTER TABLE tb_g MODIFY S_no CONSTRAINT TB_G_S_NO_NN NOT NULL;
+
+
+
+SELECT * FROM USER_CONSTRAINTS WHERE table_name = 'TB_G';
+SELECT * FROM ALL_ALL_TABLES WHERE table_name = 'TB_G';
+SELECT * FROM ALL_COL_COMMENTS WHERE table_name = 'TB_G';
+SELECT * FROM ALL_TAB_COLUMNS WHERE table_name = 'TB_G';
+

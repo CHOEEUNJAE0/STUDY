@@ -1,0 +1,31 @@
+.side-menu {
+   list-style-type: none;
+   display : inline-block;
+   width : 350px;
+   margin : 0;
+   padding: 0;
+}
+
+/* a 태그를 기준으로 그룹*/
+.menu-item a {
+    box-sizing : border-box;
+    display : block; /*그냥 inline만 하면 padding 적용이 안되니깐 bolock or inline-block으로 해준다.*/
+    padding : 1em 2em ; /*상하좌우*/
+    text-decoration : none; /*메뉴 밑에 있던 밑줄 none*/
+    background-color: grey;
+    color : palevioletred; /*글자 색상 변경*/
+    font-weight : 700; /*폰트 굵기*/
+}
+
+
+.menu-item a:hover {
+    /*원하는 menu에 마우스 가져다 댔을때 메뉴칸과 폰트 색상이 변경*/
+    background-color: lavender;
+    color : lightcyan;
+}
+
+/*a태그 안에 있는 거라서 마지막에 a 붙여줌 active 사용하고 싶으면 위에 sample에서도 원하는 곳에 active를 넣어 줘야 한다.*/
+a.active  {
+    background-color: darkseagreen;
+}
+

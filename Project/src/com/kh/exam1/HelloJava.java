@@ -15,6 +15,11 @@ public class HelloJava {
 		//println은 여러줄 줄력이 되고 출력 후 개행(엔터)의 기능으로 동작
 		//System.out.print도 출력함수인데 이건 딱 한 줄만 출력해줌.
 		
+		System.out.println("새 키보드 소리 너무 좋다 신난다.");
+		
+		System.out.println("Hello Keyboard");
+		
+		System.out.println("Hello world");
 	}
 
 }
