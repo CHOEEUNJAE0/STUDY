@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>javascript</title>
+    <script type="text/javascript" src="/static/js/ch06_5.js"></script>
+    <style type="text/css">
+        code {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h2>if문</h2>
+    <pre><code><!--공백과 기호 그대로 쓸 수 있게-->
+        if(조건식1) {
+            조건식1이 참일 때 수행할 코드
+        } else if (조건식2) { 
+            조건식1이 거짓, 조건식2가 참일때 수행할 코드
+        } else {
+            조건식 1,2가 거짓일 때 수행할 코드
+        }
+    </code></pre>
+    <h2>if문 예제코드</h2>
+    <pre><code>
+        if(x %2 == 0 ) {
+            document.getElementById("res1").innerHTML = "짝수입니다.";
+        } else {
+            document.getElementById("res1").innerHTML = "홀수입니다.";
+        }
+    </code></pre>
+    <div>
+        <label>x =</label> <input type="text" id="var1">
+        <button type="button" onclick="f1();">확인</button>
+    </div>
+    <div id="res1"></div>
+    <br>
+    <h2>switch문</h2>
+    <pre><code>
+        switch(식) {
+            case 값1 : 
+                값1에 맞는 코드 수행
+                break;
+            case 값2 :
+                값2에 맞는 코드 수행
+                break;  
+            default :
+                모든 case에 매치 되지 않는 경우
+        }
+    </code></pre>
+    <h2>switch문 예제코드</h2>
+    <pre><code>
+        switch(식) {
+            case 1 :
+            document.getElementById("res2").innerHTML = "1입니다."; 
+                break;
+            case 2 :
+            document.getElementById("res2").innerHTML = "2입니다."; 
+                break;  
+            default :
+            document.getElementById("res2").innerHTML = "1 또는 2가 아닙니다."; 
+        }
+    </code></pre>
+    <div>
+        <label>x =</label> <input type="text" id="var2">
+        <button type="button" onclick="f2();">확인</button>
+    </div>
+    <div id="res2"></div>
+    <br>
+    <hr>
+
+    <h2>for 문</h2>
+    <pre><code>
+        for(초기식; 조건식;증감식) {
+            반복 수행 할 코드
+        }
+    </code></pre>
+
+    <h2>예제 코드</h2>
+    <pre><code>
+        for(var i = 0; i &lt; x;i++) {
+            document.getElementById("res3").innerHTML += i;
+        }
+    </code></pre>
+    <div>
+        <label>x =</label> <input type="text" id="var3">
+        <button type="button" onclick="f3();">확인</button>
+    </div>
+    <div id="res3"></div>
+
+    <h2>while문</h2>
+    <pre><code>
+        while(조건식) {
+            조건식이 참일 때 반복 수행 할 코드 
+        }
+    </code></pre>
+    <h3>예제 코드</h3>
+    <pre><code>
+        var i = 0;
+        while(i &lt; x) {
+            document.getElementById("res4").innerHTML +=i;
+            i++;
+        }
+    </code></pre>
+    <div>
+        <label>x = </label><input type="text" id="var4">
+        <button type="button" onclick="f4();">확인</button>
+    </div>
+    <div id="res4"></div>
+
+    <h2>for ... in문</h2>
+    <pre><code>
+        for(변수명 in 객체) {
+            객체가 가지는 속성에 대하여 반복을
+            반복 수행 할 코드;
+        }
+    </code></pre>
+    <h3>예제 코드</h3>
+    <pre><code>
+        var obj = {a : 1, b: 2, c: 3, d: 4 }
+        for(var name in obj) {
+            document.getElementById("res5").innerHTML +=name+ +":" +obj[name] +&lt;br&gt;"
+            i++;
+        }
+    </code></pre>
+    <div>
+        <button type="button" onclick="f5();">확인</button>
+    </div>
+    <div id="res5"></div>
+
+    <h2>for ... of문</h2>
+    <pre><code>
+        for(변수명 of 객체) {
+            반복 가능한 객체의 값을 사용하여 진행
+            반복 수행 할 코드
+
+        }
+    </code></pre>
+    <h3>예제 코드</h3>
+    <pre><code>
+        <!--배열과 같은 형태로 작성해줘야한다.-->
+        var obj = [1,2,3,4,]
+        for(var value of obj) {
+            document.getElementById("res6").innerHTML +=v +"&lt;br&gt;"
+        }
+    </code></pre>
+    <div>
+        <button type="button" onclick="f6();">확인</button>
+    </div>
+    <div id="res6"></div>
+</body>
+</html>
