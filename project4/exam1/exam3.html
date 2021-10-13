@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="/static/js/ex01_1.js"></script>
+</head>
+<body>
+    <h1>*if~else문 예제*</h1>
+    <pre><code>
+    if(score >= 90 ) {
+       document.getElementById("res1").innerHTML="A학점입니다."
+    }else if (score >=80) {
+        document.getElementById("res1").innerHTML="B학점입니다."
+    }else if (score >= 70) {
+        document.getElementById("res1").innerHTML="C학점입니다."
+    }else if (score >=60) {
+        document.getElementById("res1").innerHTML="D학점입니다."
+    }else {
+        document.getElementById("res1").innerHTML="과락입니다."
+    }
+</code></pre>
+    <div>
+        <label>score = </label><input type="text" id="var1">
+        <!--클릭버튼 누르면 f1()이 실행 되게 하기-->
+        <button type="button" onclick="f1();">입력</button>
+    </div>
+    <div id="res1"></div>
+    
+    <h2>*if~else if 예제(2)*</h2>
+    <pre><code>
+        if (season > 0 && season <=3 ) {
+            document.getElementById("res2").innerHTML="1분기 입니다.";
+        } else if (season >3 && season<=6) {
+            document.getElementById("res2").innerHTML="2분기 입니다.";
+        }else if (season >6 && season <=9) {
+            document.getElementById("res2").innerHTML="3분기 입니다.";
+        } else if{ season >9 && season<=12} {
+            document.getElementById("res2").innerHTML="4분기 입니다.";
+        } else {
+            document.getElementById("res2").innerHTML="다시 입력하십시오.";
+        }
+    </code></pre>
+    <div>
+    <label>season = </label><input type="text" id="var2">
+    <button type="button" onclick="f2();">입력</button>
+</div>
+<div id="res2"></div>
+<hr>
+<h2>*switch문 예제*</h2>
+<pre><code>
+    switch (op) {
+        case '+' : 
+        document.getElementById("res3").innerHTML="더하기 기호를 입력했습니다.";
+        break;
+        case '-' :
+        document.getElementById("res3").innerHTML="빼기 기호를 입력했습니다.";
+        break;
+        case '*' : 
+        document.getElementById("res3").innerHTML="곱하기 기호를 입력했습니다.";
+        break;
+        case '/' : 
+        document.getElementById("res3").innerHTML="나누기 기호를 입력했습니다.";
+        break;
+        default : 
+        document.getElementById("res3").innerHTML="다시 입력하세요.";
+    }
+</code></pre>
+<div>
+    <label>op = </label><input type="text" id="var3">
+    <button type="button" onclick="f3();">입력</button>
+</div>
+<div id="res3">
+</div>
+<h2>switch문 예제(2)</h2>
+<pre><code>
+    switch(day % 7) {
+        case 0 :
+        document.getElementById("res4").innerHTML="목요일 입니다.";
+        break;
+        case 1 :
+        document.getElementById("res4").innerHTML="금요일 입니다.";
+        break;
+        case 2 : 
+        document.getElementById("res4").innerHTML="토요일 입니다.";
+        break;
+        case 3 : 
+        document.getElementById("res4").innerHTML="일요일 입니다.";
+        break;
+        case 4 : 
+        document.getElementById("res4").innerHTML="월요일 입니다.";
+        break;
+        case 5 : 
+        document.getElementById("res4").innerHTML="화요일 입니다.";
+        break;
+        case 6 : 
+        document.getElementById("res4").innerHTML="수요일 입니다.";
+        break;
+    }
+</code></pre>
+<div>
+    <label>day = </label><input type="text" id="var4">
+    <button type="button" onclick="f4();">입력</button>
+</div>
+<div id="res4"></div>
+</body>
+</html>
