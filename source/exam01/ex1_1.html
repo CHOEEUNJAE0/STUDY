@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변수</title>
+</head>
+<body>
+    <!--내부스크립트를 외부로 분리하여 저장(.js) src를 이용하여 불러오면 된다.-->
+    <script>
+        var num1 = 10;
+        var num2 = 20;
+        var num3 = 3;
+        var num4 = "10";
+        //결과값을 저장 할 변수 선언
+        var result;
+        var result2;
+        var result3;
+        var result4;
+        var result5;
+
+        //result에 연산식 넣어주기
+        result = num1+num3; //10+20의 값 출력
+        //document라는 객체에 .으로 접근하여 출력해줄메서드 write 선언
+        document.write(result,"<br>"); //body태그 안에 출력이 된다.
+        num1 += 5; // num1 =  num1 + 5;
+        document.write(num1,"<br>");
+        //(단항)증감연사자
+        //++ , --
+        num2++; //21
+        num2++; //22
+        num2++; //23
+        num2--; //22
+        num2--; //21
+        document.write(num2,"<br>"); //최종 출력 21
+
+        //비교연산자, boolean 값으로 출력 된다.
+        // < , >, <=, >=, ==, !=, ===, !== <-데이터타입까지 확인
+        result2 = num1 >= num2;
+        document.write(result2,"<br>");
+        document.write(num1 <= num2,"<br>");
+        num1-=5;
+        document.write(num1 == num4,"<br>"); //==은 데이터타입이 달라도 값이 같으면 true 반환
+        document.write(num1 === num4,"<br>"); // ===은 값이 같아도 데이터 타입이 다르면 false 반환 
+        document.write(num1 !== num4,"<br>"); //데이터 값이 다르니깐 이건 true 반환 not의 의미 
+
+        //논리연산자
+        //&&(and), ||(or), !(not) boolean타입으로 반환
+        //&&와 ||가 같이 있으면 &&의 값이 먼저 연산 된다.
+        //||는 true가 하나만 있어도 true값 반환
+        result3 = true && false || true && false;
+        document.write(result3,"<br>");
+
+        //삼항조건연산자
+        //논리형 데이터 ? 값1 : 값2
+        // true 이면 값1반환, false이면 값2 반환
+        result4 = true ? num1 : num2;
+        document.write(result4,"<br>"); //값1인 10 출력
+
+        /*  질의응답 창을 이용하여 숫자를 입력 받고
+            입력 받은 값이 짝수이면 짝수 출력
+            입력 받은 값이 홀수이면 홀수 출력
+        */
+       // 질의응답은 prompt 사용        
+       //질문 내용 입력, 다음에 기본값으로 출력 될 값 입력 기본값 0이 출력 된다.
+       // 숫자를 입력 할 것이기 때문에 num변수 선언
+       var num = prompt("숫자를 입력하시오.","0");
+       result5 = num % 2 == 0 ? "짝수" : "홀수";
+       document.write(result5);
+
+
+
+
+       /*var num = prompt("숫자를 입력하시오.","0");
+       if (num % 2 == 0) {
+           document.write("짝수입니다.");
+       } else {
+           document.write("홀수입니다.");
+       }   if문을 사용하면 이렇게도 가능하다*/
+
+
+                
+    </script>
+    
+</body>
+</html>
