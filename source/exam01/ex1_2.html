@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연습</title>
+
+</head>
+<body>
+    <script>
+        //테이블 만들기
+        var str="<table border='1'>";
+            str += "<tr>";
+            str += "<td>1</td><td>2</td><td>3</td>";
+            str +="<tr>";
+                str += "<td>4</td><td>5</td><td>6</td>";
+                str +="<tr>";
+                str += "<td>7</td><td>8</td><td>9</td>";
+            str +="</table>";
+            document.write(str);
+    </script>
+    <!--
+    <script>
+        var name = prompt("이름을 입력하시오.",""); //이름 입력
+        var height = prompt("신장을 입력하시오.","0"); //신장 입력
+        var weight = prompt("체중을 입력하시오.","0"); //체중 입력
+
+        var normal_w = (height-100)*0.9; //평균체중
+        var result = weight >=normal_w -5 && weight<=normal_w +5; //오차범위+-5;
+        result = result ? "적정체중입니다." : "적정 체중이 아닙니다.";
+        document.write(name + "님은" + result); 
+    </script>
+-->
+<!--
+<script>
+    var name = prompt("이름을 입력하시오.","");
+    var age = prompt("나이를 입력하시오.","0");
+    if(age <= 7) {
+        document.write("미취학아동입니다.") 
+       }else if (age <= 13) {
+           document.write("초등학생 입니다.")
+       }else if(age <= 19) {
+           document.write("중고등학생 입니다.")
+       }else if(age >= 20 && age < 64) {
+           document.write("성인 입니다.")
+       }else{
+           document.write("어르신 입니다.")
+       }
+       </script>
+    -->
+    <script>
+        var price1 = 3000;
+        var price2  = 6000;
+        var price3 = 3000;
+
+        var result = 10000;
+
+        var result = prompt("지출을 입력하시오.","0");
+        result = result ? "돈 관리를 잘했군요!" : "10000원 초과";
+        document.write(result);
+        </script>
+        <hr>
+        <br>
+<script>
+    var num1 = 1200;
+    var num2 = 1300;
+    var num3 = 1000;
+
+    var avg = (num1+num2+num3)/3;
+
+    var result = prompt("4분기 판매량을 입력하시오.","0")
+
+    if (result > avg) {
+        document.write("판매량이 평균 이상입니다.");
+    }else{
+        document.write("판매량이 미달입니다.")
+    }
+</script>
+
+    
+</body>
+</html>
