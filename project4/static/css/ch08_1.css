@@ -15,3 +15,7 @@ section#main{
         background-color : lightgrey; 
     }
 }
+/*화면 크기를 줄이면 cornsilk컬로로 바뀜*/
+   
+}
+/*이런식으로 작성 해야할 쿼리들이 늘어지면 css 한개를 더 생성해서 마지막쿼리를 해당 css에서 작성 한 후(media는 적어주지 않는다.) html파일에 media="screen and(max-width:600px)"를 적어주면 된다.*/
