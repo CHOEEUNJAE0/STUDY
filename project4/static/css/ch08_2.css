@@ -1,0 +1,6 @@
+/*여기에 media를 작성하지 않고 html에 link안에 media를 작성 해 줘도 된다.*/
+    section#main {
+        width : 480px;
+        margin : 0 auto;
+        background-color : cornsilk; 
+    }

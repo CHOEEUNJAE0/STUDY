@@ -1,0 +1,17 @@
+/*기본 설정*/
+section#main{
+    width:960px;
+    margin : 0 auto;
+    background-color: lavender;
+
+}
+/*반응형 웹을 위한 media 쿼리 작성*/
+/*screen에서 최대 900px까지는 아래의 속성을 적용 시켜주겠다는 뜻*/
+/*화면 크기를 줄이면 lightgrey컬로로 바뀜*/
+@media only screen and (max-width : 900px) {
+    section#main {
+        width : 640px;
+        margin : 0 auto;
+        background-color : lightgrey; 
+    }
+}
