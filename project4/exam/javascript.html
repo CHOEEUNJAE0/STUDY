@@ -5,14 +5,94 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript 실습</title>
+    <style>
+        
+
+body{
+  margin:0;
+}
+
+  a {
+    color : black;
+    text-decoration: none; /*밑줄 삭제*/
+  }
+
+  h1{
+    font-size:60px;
+    text-align: center;
+    border-bottom: 1px solid gray;
+    text-shadow: 5px 5px 5px pink;
+    margin:0;
+    padding:20px;
+  }
+
+  ol{
+  border-right: 1px solid gray;
+  width:100px;
+  margin:0;
+  padding: 20px;
+  }
+
+  #one {
+      display:grid;
+      grid-template-columns: 150px 1fr;
+  }
+
+#one ol {
+    padding-left:33px;
+  }
+
+#one #article{
+  padding-left:25px;
+}
+
+@media(max-width:800px) {
+  #one{
+    display:block;
+  }
+  ol{
+  border-right: none;
+}
+h1 {
+       border-bottom:none;
+     }
+}
+/*body 태그 이름이 dark 일 때 라는 뜻*/
+body.dark{
+    background-color:black;
+    color :white; 
+}
+    </style>
 </head>
-<body>
-    <ul>
-    <script>
-        for(i=0;i<1000;i++){
-            document.write('<li>'+(i*2)+'</li>');
-        }
-    </script>    
-     </ul>
+<body class="dark" id="root">
+    <input type="button" value="dark" onclick="document.getElementById('root').setAttribute('class', '')"/>
+    <input type="button" value="white" onclick="document.getElementById('root').setAttribute('class', 'dark')"/>
+    <input type="text" onblur="alert('blur')"/>
+    <!--이벤트
+        사용자의 반응을 시스템에서 전달
+        onclick으로 명령
+    <input type="button" value="클릭" onclick="alert('메롱');"/>-->
+    <h1><a href="index.html">WEB</a></h1>
+    <div id="one">
+    <ol>
+      <li> <a href="1.html" >HTML</a></li>
+      <li> <a href="2.html">CSS</a></li>
+      <li> <a href="3.html">JavaScript</a></li>
+    </ol>
+    <div id="article">
+    <h2>HTML</h2>
+      <P>
+    <a href="https://www.w3.org/TR/2011/WD-html5-20110405/" target="_black" title="html-specification">HTML (Hypertext Markup Language,하이퍼텍스트 마크업 언어)</a>는 프로그래밍 언어는 아니고, 우리가 보는 웹페이지가 어떻게 구조화되어 있는지 브라우저로 하여금 알 수 있도록 하는 <strong><u>마크업 언어</u>입니다.</strong><br>
+    이는 개발자로 하여금 복잡하게도 간단하게도 프로그래밍 할 수 있습니다. HTML은 elements로 구성되어 있으며,이들은 적절한 방법으로 나타내고 실행하기 위해 각 컨텐츠의 여러 부분들을 감싸고 마크업 합니다.<br>
+    tags 는 웹 상의 다른 페이지로 이동하게 하는 하이퍼링크내용들을 생성하거나, 단어를 강조하는 등의 역할을 합니다. <br>
+    예를들어, 다음의 내용을 봅시다.
+    </p>
+    </div>
+    </div>
+    
+    <!--이미지 삽입시에는 태그이름 뿐 아니라 주소까지 같이 삽입 해 줘야한다. 크기는 위치 상관 없이 작성하고 원하는 크기로 설정 가능-->
+    <img src="https://images.unsplash.com/photo-1605379399642-870262d3d051?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZGV2ZWxvcGVyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" width="100%">
+    
+    
 </body>
 </html>
