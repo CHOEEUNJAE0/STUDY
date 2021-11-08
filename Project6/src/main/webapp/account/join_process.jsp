@@ -11,7 +11,9 @@
 		<h1>회원 가입 진행 결과</h1>
 		<%--스크립트 태그 작성 --%>
 		<%
-		//서버의 콘솔에 출력 하겠다고 작성 한 것
+			//서버의 콘솔에 출력 하겠다고 작성 한 것
+			//encoding 지정 해 줘야 한글 안 깨지고 잘 출력 된다.
+			request.setCharacterEncoding("UTF-8");
 			System.out.println("username :"+request.getParameter("username"));
 			System.out.println("password :"+request.getParameter("password"));
 			System.out.println("gender : "+request.getParameter("gender"));
