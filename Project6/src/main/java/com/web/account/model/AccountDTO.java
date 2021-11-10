@@ -16,9 +16,9 @@ public class AccountDTO {
 	public String getUserid() {
 		return userid;
 	}
-
+	//간단한 연산은 accountDTO에서 하고 복잡한 것은 Accountservice에서 작성
 	public void setUserid(String userid) {
-		this.userid = userid;
+		this.userid = userid.toLowerCase();
 	}
 
 	public String getPassword() {
@@ -26,6 +26,6 @@ public class AccountDTO {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = password.toLowerCase();
 	}
  }
