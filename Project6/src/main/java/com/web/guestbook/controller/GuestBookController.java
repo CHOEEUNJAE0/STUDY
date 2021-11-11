@@ -1,6 +1,7 @@
 package com.web.guestbook.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,6 +21,11 @@ public class GuestBookController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 위치 작성
+		
+		GuestBookService service = new GuestBookService();
+
+		request.setAttribute("datas", service.getList());
+		
 		String view = "/WEB-INF/jsp/guestbook/index.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
@@ -51,6 +57,7 @@ public class GuestBookController extends HttpServlet {
 			//기존의 포워드 시켜줬던 코드 그래도 복붙 
 			   					//"속성명", "속성값" 형태로 담아준다
 			request.setAttribute("init", "dto");
+			request.setAttribute("datas", service.getList());
 			String view = "/WEB-INF/jsp/guestbook/index.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(view);
 			rd.forward(request, response);
