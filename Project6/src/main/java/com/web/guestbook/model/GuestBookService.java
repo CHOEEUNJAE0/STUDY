@@ -27,13 +27,14 @@ public class GuestBookService {
 			// 검색과 관련해서 생성. 조건 없이 전체 조회 하기 위해 select
 			// 조회를 하고 난 뒤에 데이터 반황 받아야하기때문에 반환시 똑같이 list로 받아서 처리
 			// select 없으니깐 게스트북dao에 생성
-			if(dao.insert(dto)) {
+			boolean res = dao.insert(dto);
+			if(res) {
 				dao.commit();
-				return true;
 			}else {
 				dao.rollback();
-				return false;
 			}
+			dao.close();
+			return res;
 	}
 	//출력 넘겨받을 자료 없음
 	//getList니깐 반환값 List<반환내용>
@@ -42,6 +43,7 @@ public class GuestBookService {
 		//아직 리턴 내용 없어서 null
 	
 		List<GuestBookDTO> datas = dao.select();
+		dao.close();
 		return datas;
 	}
 	public boolean modify(GuestBookDTO dto) {
@@ -52,9 +54,30 @@ public class GuestBookService {
 		data.setContext(dto.getContext());
 		return update(data);
 	}
+    public boolean delete(GuestBookDTO dto) {
+    	// 1. 기존에 저장된 데이터를 조회한다.
+    	// 2. 조회된 데이터를 확인 후 삭제.
+    	GuestBookDTO data = getData(dto.getId());
+    	dao = new GuestBookDAO();
+    	boolean res = false;
+    	if(data.getId() != 0) {
+    		res = dao.delete(data);
+    	}
+    	if(res) {
+    		dao.commit();
+    	} else {
+    		dao.rollback();
+    	}
+    	dao.close();
+
+    	return res;
+    }
+	
 	//리턴값 DTO  그리고 ID를 받아온다
 	public GuestBookDTO getData(int id) {
-		GuestBookDTO data = new GuestBookDTO();
+		dao = new GuestBookDAO();
+		GuestBookDTO data = dao.select(id);
+		dao.close();
 		return data;
 	}
 	
