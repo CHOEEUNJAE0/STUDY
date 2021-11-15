@@ -76,9 +76,11 @@ public class GuestBookController extends HttpServlet {
 					//수정이니깐 modify 
 				//modify 안에 수정 할 내용 전달 해 줘야하니깐.
 			GuestBookDTO dto = new GuestBookDTO();
+			service = new GuestBookService();
+			
 			dto.setId(id);
 			dto.setContext(context);
-			if(service.modify(dto)) { //dto전달
+			if(service.modify(dto)) {//dto전달
 			//id값 int 아닌 string으로 받아왔으니깐 DTO에 오버라이드 해준다
 			response.sendRedirect("/guest");
 		}else {
@@ -92,6 +94,8 @@ public class GuestBookController extends HttpServlet {
 		//response.getWriter().write(context);
 
      	}
-	}
+	
 }
+}
+
 
