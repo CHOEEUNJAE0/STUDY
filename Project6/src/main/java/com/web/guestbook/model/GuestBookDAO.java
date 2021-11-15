@@ -46,6 +46,22 @@ public class GuestBookDAO {
 		//resultSet 활용법
 		return datas;
 	}
+	 public GuestBookDTO select(int id) {
+	    	GuestBookDTO dto = new GuestBookDTO();
+	    	String query = "SELECT * FROM GUESTBOOK"
+	    			+ " WHERE G_ID = " + id;
+	    	
+	    	try {
+				ResultSet res = occ.sendQuery(query);
+				res.next();
+				dto.setResultSet(res);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	    	
+	    	return dto;
+	    }
+	
 	
 	
 	public boolean insert(GuestBookDTO dto) {
@@ -70,8 +86,8 @@ public class GuestBookDAO {
 	public boolean update(GuestBookDTO dto) {
 		String query = "UPDATE GUESTBOOK"
 				+ "SET"
-				+" CONTEXT = '" +dto.getContext() + "'"
-				+ "WHERE ID = " + dto.getId() + "";
+				+" G_CONTEXT = '" +dto.getContext() + "'"
+				+ "WHERE G_ID = " + dto.getId() + "";
 		int res = 0;
 		try {
 			res = occ.insertQuery(query);
@@ -81,6 +97,22 @@ public class GuestBookDAO {
 		}
 		return res == 1 ? true : false;
 	}
+	 public boolean delete(GuestBookDTO dto) {
+	    	String query = "DELETE FROM GUESTBOOK"
+	    			+ " WHERE G_ID = " + dto.getId() + "";
+
+	    	int res = 0;
+	    	try {
+				res = occ.deleteQuery(query);
+				occ.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+	    	return res == 1 ? true : false;
+	    }
+	
+	
 	//service쪽 사용
 	public void commit(){
 		try {
