@@ -16,6 +16,8 @@ import com.web.guestbook.model.*;
 @WebServlet("/guest")
 public class GuestBookController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private GuestBookService service = new GuestBookService();
 
 	//페이지 + 조회목록 전달
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,6 +35,7 @@ public class GuestBookController extends HttpServlet {
 	}
 	
 	//저장 처리
+					//post에서 수정과 추가를 함께 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -41,9 +44,12 @@ public class GuestBookController extends HttpServlet {
 		//request : 사용자요청 response : 사용자요청 서버응답
 		request.setCharacterEncoding("UTF-8");
 		
+		String id = request.getParameter("id");
 		String context = request.getParameter("context");
 			//ip주소
 		String ipaddr = request.getRemoteAddr();
+		
+		if(id == null) {
 		
 		//dto 만들어주기(import)
 		GuestBookDTO dto = new GuestBookDTO(ipaddr, context);
@@ -62,7 +68,22 @@ public class GuestBookController extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher(view);
 			rd.forward(request, response);
 		}
-		
+		}else {
+			// 수정 작업 주의 사항
+			// 1. 기존에 저장 된 데이터를 조회해야 한다
+			// 2 . 조회된 데이터에 수정 된 데이터로 교헤
+			// 3. 교체된 데이터로 저장
+					//수정이니깐 modify 
+				//modify 안에 수정 할 내용 전달 해 줘야하니깐.
+			GuestBookDTO dto = new GuestBookDTO();
+			dto.setId(id);
+			dto.setContext(context);
+			if(service.modify(dto)) { //dto전달
+			//id값 int 아닌 string으로 받아왔으니깐 DTO에 오버라이드 해준다
+			response.sendRedirect("/guest");
+		}else {
+			response.sendRedirect("/guest");
+		}
 	
 		//시스템에 출력 할 것인지
 		//System.out.println(context);
@@ -70,7 +91,7 @@ public class GuestBookController extends HttpServlet {
 		//클라이언트에 출력 할 것인지
 		//response.getWriter().write(context);
 
-	
+     	}
 	}
-
 }
+

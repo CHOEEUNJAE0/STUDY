@@ -9,7 +9,7 @@ import oracle.jdbc.OracleConnection;
 import oracle.jdbc.pool.OracleDataSource;
 
 public class OracleCloudConnect {
-	private final String DB_URL = "jdbc:oracle:thin:@mydb_medium?TNS_ADMIN=D:/Wallet_myDB";
+	private final String DB_URL = "jdbc:oracle:thin:@mydb_medium?TNS_ADMIN=C:/Wallet_myDB";
 	private Properties info = new Properties();
 	private OracleDataSource ods = null;
 	private OracleConnection conn = null;
@@ -53,6 +53,9 @@ public class OracleCloudConnect {
 	public int insertQuery(String query) throws SQLException {
 		this.stat = this.conn.createStatement();
 		return this.stat.executeUpdate(query);
+	}
+	public int updateQuery(String query) throws SQLException {
+		return this.insertQuery(query);
 	}
 
 	public void close() throws SQLException {

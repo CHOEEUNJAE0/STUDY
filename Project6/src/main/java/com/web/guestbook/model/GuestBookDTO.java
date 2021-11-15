@@ -23,6 +23,13 @@ public class GuestBookDTO {
 	public void setId(int id) {
 		this.id = id;
 	}
+	//오버라이드
+	//int로 형변환 후 this.id에 넣어줌
+	public void setId(String id) {
+		this.id = Integer.parseInt(id);
+	}
+	
+	
 	public String getIpaddr() {
 		return ipaddr;
 	}
