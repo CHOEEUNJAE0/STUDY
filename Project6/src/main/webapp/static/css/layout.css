@@ -1,1 +1,8 @@
-@charset "UTF-8";
+header {
+    height: 60px;
+}
+
+section.main-center {
+    width: 680px;
+    margin: 0 auto;
+}
