@@ -52,15 +52,16 @@ public class LoginControlloer extends HttpServlet {
 		if(service.confirmPassword()) {
 			//8.패스워드가 일치하는 경우 //리다이렉트 해주기
 			response.sendRedirect("/");
-			rp.forward(request, response);
 		}else {
 			//패스워드 불일치 //다시 로그린 화면을 포워드 해줘야한다(메세지를 담아서).
 			request.setAttribute("login_error", "패스워드를 잘 못 입력했습니다.");
+			System.out.println("패스워드를 잘 못 입력 했습니다.");
 			rp.forward(request, response);
 	}
 		}else {
 			//아이디 불일치
 			request.setAttribute("login_error", "해당 아이디가 했습니다.");
+			System.out.println("해당 아이디가 없습니다.");
 			rp.forward(request, response);
 		}
 			
