@@ -3,23 +3,12 @@ package com.web.join.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.jspweb.dbconn.OracleCRUD;
 import com.jspweb.dbconn.OracleCloudConnect;
 
-public class JoinDAO {
+public class JoinDAO extends OracleCRUD {
 	//오라클커넥션에 연결 해줘야한다.
 	
-	OracleCloudConnect occ;
-	
-	public JoinDAO() {
-		try {
-			this.occ = new OracleCloudConnect();
-			this.occ.connection();
-		} catch (SQLException e) {
-			e.printStackTrace(); //connection과 관련 된 에러가 발생하면 기본 에러 메세지 출력 해 주는 것
-			System.out.println("JoinDAO 생성자 동작에 에러 발생");
-		}
-	}
-
 	public JoinDTO select(String username) {
 		String query = "SELECT * FROM MEMBERS"
 				+ " WHERE USERNAME = '" + username + "'";
@@ -47,16 +36,6 @@ public class JoinDAO {
 		return data;
 	}
 
-	public void close() {	
-		
-		try {
-			occ.connectionClose(); 
-		}catch (SQLException e ) {
-			e.printStackTrace();
-			System.out.println("JoinDAO close 메서드 동작에 에러 발생");
-		}
-	}
-
 	public boolean insert(JoinDTO dto) {
 		String query = "INSERT INTO MEMBERS VALUES("
 				+"MEMBERS SEQ.NEXTVAL,"
@@ -74,26 +53,8 @@ public class JoinDAO {
 			System.out.println("JoinDAO insert 메서드 동작에 에러 발생");
 		}
 		return res == 1 ? true : false;
-}
-		
-	public void commit() {
-		try {
-			occ.commit();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("JoinDAO commit 메서드 동작에 에러 발생");
 		}
-		
+	
 	}
 
-	public void rollback() {
-		try {
-			occ.rollback();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("JoinDAO rollback 메서드 동작에 에러 발생");
-		}
-		
-	}
 
-}
