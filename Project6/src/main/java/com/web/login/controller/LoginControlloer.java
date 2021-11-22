@@ -5,9 +5,12 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+
 
 import com.web.login.model.LoginDTO;
 import com.web.login.model.LoginService;
@@ -51,6 +54,10 @@ public class LoginControlloer extends HttpServlet {
 			//7. 아이디 있는지 없는지 확인
 		if(service.confirmPassword()) {
 			//8.패스워드가 일치하는 경우 //리다이렉트 해주기
+
+			Cookie cookie = new Cookie("login_name", dto.getUsername());
+			cookie.setMaxAge(60 * 30); // 만료시간 설정 
+			response.addCookie(cookie);
 			response.sendRedirect("/");
 		}else {
 			//패스워드 불일치 //다시 로그린 화면을 포워드 해줘야한다(메세지를 담아서).
