@@ -2,6 +2,7 @@ package com.web.login.controller;
 
 import java.io.IOException;
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +10,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
+import javax.servlet.http.HttpSession;
 
 import com.web.login.model.LoginDTO;
 import com.web.login.model.LoginService;
@@ -58,6 +58,11 @@ public class LoginControlloer extends HttpServlet {
 			Cookie cookie = new Cookie("login_name", dto.getUsername());
 			cookie.setMaxAge(60 * 30); // 만료시간 설정 
 			response.addCookie(cookie);
+			
+			// true: 이미 세션정보가 있으면 있는 정보로 반환하고 없으면 새로 생성한다.
+			// false: 이미 세션정보가 있으면 있는 정보로 반환하고 없으면 null로 반환한다.
+			HttpSession session = request.getSession();
+			session.setAttribute("login_name", dto.getUsername());
 			response.sendRedirect("/");
 		}else {
 			//패스워드 불일치 //다시 로그린 화면을 포워드 해줘야한다(메세지를 담아서).
