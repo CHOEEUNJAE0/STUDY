@@ -14,6 +14,7 @@ public abstract class OracleCRUD {
 		} catch (SQLException e) {
 			e.printStackTrace(); //connection과 관련 된 에러가 발생하면 기본 에러 메세지 출력 해 주는 것
 			System.out.println("JoinDAO 생성자 동작에 에러 발생");
+			
 		}
 	}
 
