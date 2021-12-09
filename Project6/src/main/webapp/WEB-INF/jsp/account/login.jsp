@@ -36,7 +36,7 @@
 	<c:url var="login_url" value="/login" />
 	<form action="${login_url}" method="post">
 		<div>
-			<input type="text" name="username" value="${isError ? param.username : "" } " placeholder="아이디">
+			<input type="text" name="username" value="${param.username}" placeholder="아이디">
 		</div>
 		<div>
 			<input type="password" name="password" placeholder="패스워드">
