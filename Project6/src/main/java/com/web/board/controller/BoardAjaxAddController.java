@@ -45,6 +45,7 @@ public class BoardAjaxAddController extends HttpServlet {
 		obj2.put("Home", "222-222-2222");
 		
 		
+		
 		jsonArr.add(obj1);
 		jsonArr.add(obj2);
 		
