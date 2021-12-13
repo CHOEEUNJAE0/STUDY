@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.web.board.model.BoardDTO;
@@ -65,8 +64,8 @@ public class BoardAjaxAddController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("applicationn/json; charset=utf-8");
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("application/json; charset=utf-8");
 		
 		String bid = request.getParameter("bid");
 		String title = request.getParameter("title");
@@ -75,25 +74,26 @@ public class BoardAjaxAddController extends HttpServlet {
 			bid = "0";
 		}
 		
-		BoardDTO dto = new BoardDTO(bid, title);
+		BoardDTO dto = new BoardDTO(bid, title); //dto에 해당 생성만 만들어준다.
 		BoardService service = new BoardService();
 		
-		boolean res = service.create(dto);
+		boolean res = service.create(dto); //create 넣어주는것 만들어라. 성공/실패를 boolean으로 받아 줌
 		
-		JSONObject json = new JSONObject();
+		JSONObject json = new JSONObject(); //json 형식 만들어 줌
 		if(res) {
 			json.put("bid", dto.getId());
 			json.put("message", "저장됨!");
 			json.put("status", "success");
-		}else {
+		} else {
 			json.put("bid", "");
 			json.put("message", "저장실패!");
 			json.put("status", "fail");
+		
 		}
 		
-			PrintWriter out = response.getWriter();
-			out.print(json.toJSONString());
-			out.flush();
+		PrintWriter out = response.getWriter();
+		out.print(json.toJSONString());
+		out.flush();
 
 	}
 

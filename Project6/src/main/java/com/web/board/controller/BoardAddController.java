@@ -1,11 +1,15 @@
 package com.web.board.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONObject;
 
 import com.web.board.model.BoardDTO;
 import com.web.board.model.BoardService;
@@ -13,34 +17,38 @@ import com.web.board.model.BoardService;
 @WebServlet("/board/add")
 public class BoardAddController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private String view ="/WEB-INF/jsp/board/add.jsp";
-
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+	//private String view = "/WEB-INF/jsp/board/add.jsp";
+	
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher(view).forward(request, response);
-	}
-
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		response.setContentType("application/json; charset=utf-8");
+		
 		String bid = request.getParameter("bid");
 		String title = request.getParameter("title");
-		String content = request.getParameter("content");
 		
-		BoardDTO dto = new BoardDTO(bid, title, content);
-		BoardService service = new BoardService();
-		
-		boolean res = service.update(dto);
-		if(res) {
-			response.sendRedirect(request.getContextPath() + "/baord");
-		}else {
-			doGet(request,response);
+		if(bid.equals("")) {
+			bid = "0";
 		}
 		
-
-
+		BoardDTO dto = new BoardDTO(bid, title);
+		BoardService service = new BoardService();
+		
+		boolean res = service.create(dto);
+		
+		JSONObject json = new JSONObject();
+		if(res) {
+			json.put("bid", dto.getId());
+			json.put("message", "저장됨!");
+			json.put("status", "success");
+		} else {
+			json.put("bid", "");
+			json.put("message", "저장실패!");
+			json.put("status", "fail");
+		}
+		
+		PrintWriter out = response.getWriter();
+		out.print(json.toJSONString());
+		out.flush();
 	}
 }
