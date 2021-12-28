@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!-- static 파일의 위치를 정리하기 위한 것 /location/는 resource폴더를 나타내는 것 mapping은 url 주소-->
+	<!--  resources mapping="/resources/**" location="/resources/" /-->
+	<!-- location주소는 복잡해도 되지만 mapping 주소는 간단하게 -->
+	<!-- 여러개 등록 할 수 있다. -->
+	<resources mapping="/img/**" location="/resources/images/" />
+	<resources mapping="/static/**" location="/resources/static/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<!--viewResolver 구조 been:servlet이나 spring 컨테이너에 등록 할 때 사용하는 형태 그래서 prefix,suffix 들어 있는 것. 경로를 넣어주면 된다  -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<context:component-scan base-package="com.web.project7" />
+	
+	<!-- Data Source 정보 등록 -->
+	<context:property-placeholder location="file:///C:/Users/user1/oracle_connection.prop" />
+	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="oracle.jdbc.OracleDriver"></beans:property>
+		<beans:property name="url" value="{url}"></beans:property>
+		<beans:property name="username" value="{name}"></beans:property>
+		<beans:property name="password" value="{password}"></beans:property>
+	</beans:bean>
+	
+	<!-- DataSource와 마이바티스 연결 -->
+	<beans:bean id="selSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource"></beans:property>
+		<beans:property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"></beans:property><!-- resources->mybatis안에 들어 있는 것을 가져와준다 -->
+		<beans:property name="mapperLocation" value="classpath:/mybatis/mapper/*.xml"></beans:property> <!-- mapper안에 있는 모든 파일들을 가져와준다. -->
+	</beans:bean>
+	
+	<!-- DAO 에서 사용 할 SQL 세션 생성용 빈 -->
+		<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+			<beans:constructor-arg index="0" ref="sqlSessionFactory"></beans:constructor-arg>
+		</beans:bean>
+	
+	
+</beans:beans>

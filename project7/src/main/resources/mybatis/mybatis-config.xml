@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <!-- mybatis-config로 따로 빼줬기 때문에 필요 없음 -->
+  <!--  properties url="file:///C:/Users/user1/oracle_connection.prop">
+  	<property name="oracleDriver" value="oracle.jdbc.driver.OracleDriver" />
+  </properties-->
+  <!-- settings>
+  	<setting name="jdbcTypeForNull" value="null" />
+  </settings-->
+  <typeAliases>
+  	<typeAlias type="com.web.project7.account.model.AccountDTO" alias="account" />
+  </typeAliases>
+  <!-- mybatis-config로 따로 빼줬기 때문에 필요 없음 -->
+  <!-- environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${oracleDriver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${user}"/>
+        <property name="password" value="${password}"/>
+        <property name="poolMaximumActiveConnections" value="15" />
+        <property name="poolMaximumIdleConnections" value="5"/>
+      </dataSource>
+    </environment>
+  </environments-->
+  <!-- mybatis-config로 따로 빼줬기 때문에 필요 없음 -->
+  <!--  mappers>
+    <mapper resource="resources/mapper/account.xml"/>
+    <mapper resource="resources/mapper/board.xml"/>
+  </mappers-->
+</configuration>
