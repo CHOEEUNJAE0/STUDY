@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<form action="calc3" method="post">
+	
+	<!-- 입력박스를 하나만 놔두고 값을 하나씩 보내고 먼저 보냈던 값을 저장 할 저장소가 필요 -->
+	<h6>계산 할 값을 입력 하세요</h6>
+		<div>
+			<label> 입력 :  </label>
+			<!-- 값을 전달하는것이 아니기때문에 value라는 의미로 v로 지정-->
+				<input type="text" name="v">
+		</div>
+		<div>
+		<!-- 버튼은 하나만 눌려야 하기 때문에 name은 동일하게 설정 해도 된다. name이 있기때문에 전달이 된다. -->
+			<input type="submit" name="operator" value="+" />
+			<input type="submit" name="operator" value="-" />
+			<input type="submit" name="operator" value="=" />
+		</div>
+
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<form action="calc" method="post">
+	
+	
+	<h6>계산 할 값을 입력 하세요</h6>
+		<div>
+			<label> x : </label>
+				<input type="text" name="x">
+		</div>
+		
+		<div>
+			<label> y : </label>
+				<input type="text" name="y">
+		</div>
+		
+		<div>
+		<!-- 버튼은 하나만 눌려야 하기 때문에 name은 동일하게 설정 해도 된다. name이 있기때문에 전달이 된다. -->
+			<input type="submit" name="operator" value="덧셈" />
+			<input type="submit" name="operator" value="뺄셈" />
+		</div>
+
+	</form>
+
+</body>
+</html>
