@@ -1,93 +1,31 @@
-import logo from './logo.svg';
-import axios from "axios";
-import { useState, useEffect } from "react";
+import React, {useState, useEffect } from 'react';
+import { Header } from 'tar';
 import './App.css';
+import customAxios from './customAxios';
 
+function App(){
+  //IP 주소 변수 선언
+  const [ip,setIp] = useState('');
 
+  //IP 주소 값 설정
+  function callback(data) {
+    setIp(data);
+  }
 
-function App() {
-
-
-  return (
-  <div className="App">
-
-  
-  <h1>사원 정보</h1>
-  <input className="search" type="text"></input> <button type="submit" className="top-btn">검색</button>
-  <hr className="hr-2"></hr>
-  <table>
-    <Thead></Thead>
-    <Tbody></Tbody>
-  </table>
-  <div>
-    <a href="#" className="bottom-btn">등록</a>
-    <a href="#" className="bottom-btn">삭제</a>
-  </div>
-</div>
+  //첫번째 랜더링을 마친 후 실행
+  useEffect(
+    () => {
+      //클라이언트의 IP 주소를 알아내는 백엔드의 함수 호출
+      customAxios('/ip',callback);
+    }, []
   );
-}
 
-
-function Thead(){
-  return (
-    <thead>
-    <tr>
-      <th>No</th>
-      <th>ID</th>
-      <th>이름</th>
-      <th>회사</th>
-      <th>직급</th>
-      <th>연락처</th>
-      <th>EMAIL</th>
-    </tr>
-  </thead>
-  )
-}
-function Tbody(){
-  const [selectDate,setSelectData] = useState([{
-    id:'',
-    name:'',
-    company:'',
-    position:'',
-    pno:'',
-    email:''
-  }])
-
-  return (
-    // useEffect(async() => {
-    //   try{
-    //   // 데이터를 받아오는 동안 시간이 소요됨으로 await 로 대기
-    //     const res = await axios.get('/board')
-    //     // 받아온 데이터로 다음 작업을 진행하기 위해 await 로 대기
-    //     // 받아온 데이터를 map 해주어 rowData 별로 _inputData 선언
-    //     const _selectDate = await res.data.map((rowData) => ({
-    //       id:rowData.id,
-    //       name:rowData.name,
-    //       company:rowData.company,
-    //       position:rowData.position,
-    //       pno:rowData.pno,
-    //       email:rowData.email
-    //           })
-    //     )
-    //     // 선언된 _inputData 를 최초 선언한 inputData 에 concat 으로 추가
-    //     setInputData(inputData.concat(_inputData))
-    //   } catch(e){
-    //     console.error(e.message)
-    //   }
-    // },[])
+  return(
+    <div className="App">
+      <header className="App-header">
+        이 기기의 IP 주소는 {ip} 입니다.
+      </header>
+    </div>
+  );
   
-    <tbody>
-      <tr>
-        <td>1</td>
-        <th>ondal</th>
-        <td>최온달</td>
-        <td>냥냥상사</td>
-        <td>대리</td>
-        <td>010-0000-0000</td>
-        <td>ondal@yaong.cat</td>
-      </tr>
-    </tbody>
-  )
 }
-
-export default App;
